@@ -4,7 +4,7 @@ This should results in an average return of -20 by the end of training.
 Usually hits -30 around epoch 50.
 Note that one epoch = 5k steps, so 200 epochs = 1 million steps.
 """
-import gym
+import gymnasium
 
 import rlkit.torch.pytorch_util as ptu
 from rlkit.data_management.obs_dict_replay_buffer import ObsDictRelabelingBuffer

@@ -12,7 +12,7 @@ import random
 import torch
 import numpy as np
 
-import gym
+import gymnasium
 
 def experiment(
         env_name,

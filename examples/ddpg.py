@@ -3,7 +3,7 @@ Example of running PyTorch implementation of DDPG on HalfCheetah.
 """
 import copy
 
-from gym.envs.mujoco import HalfCheetahEnv
+from gymnasium.envs.mujoco import HalfCheetahEnv
 
 from rlkit.data_management.env_replay_buffer import EnvReplayBuffer
 from rlkit.envs.wrappers import NormalizedBoxEnv
@@ -23,7 +23,7 @@ def experiment(variant):
     eval_env = NormalizedBoxEnv(HalfCheetahEnv())
     expl_env = NormalizedBoxEnv(HalfCheetahEnv())
     # Or for a specific version:
-    # import gym
+    # import gymnasium
     # env = NormalizedBoxEnv(gym.make('HalfCheetah-v1'))
     obs_dim = eval_env.observation_space.low.size
     action_dim = eval_env.action_space.low.size

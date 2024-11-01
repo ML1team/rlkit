@@ -1,5 +1,5 @@
 import numpy as np
-from gym import utils
+from gymnasium import utils
 from rlkit.envs.pearl_envs.rand_param_envs.base import RandomEnv
 
 

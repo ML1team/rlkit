@@ -1,5 +1,5 @@
 import numpy as np
-from gym.spaces import Box, Dict
+from gymnasium.spaces import Box, Dict
 
 from rlkit.exploration_strategies.base import RawExplorationStrategy
 

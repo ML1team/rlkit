@@ -2,7 +2,7 @@
 Run DQN on CartPole-v0.
 """
 
-import gym
+import gymnasium
 from torch import nn as nn
 
 from rlkit.exploration_strategies.base import \

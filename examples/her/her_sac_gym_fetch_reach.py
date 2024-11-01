@@ -1,4 +1,4 @@
-import gym
+import gymnasium
 
 import rlkit.torch.pytorch_util as ptu
 from rlkit.data_management.obs_dict_replay_buffer import ObsDictRelabelingBuffer

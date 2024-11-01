@@ -4,8 +4,8 @@ import torch
 from PIL import Image
 from collections.__init__ import deque
 
-from gym import Env
-from gym.spaces import Box
+from gymnasium import Env
+from gymnasium.spaces import Box
 
 from rlkit.envs.wrappers import ProxyEnv
 

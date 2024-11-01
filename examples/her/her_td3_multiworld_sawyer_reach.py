@@ -6,7 +6,7 @@ a bit noisy from one epoch to the next (occasionally dips dow to ~2000).
 
 Note that one epoch = 5k steps, so 200 epochs = 1 million steps.
 """
-import gym
+import gymnasium
 
 import rlkit.torch.pytorch_util as ptu
 from rlkit.data_management.obs_dict_replay_buffer import ObsDictRelabelingBuffer

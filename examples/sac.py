@@ -1,4 +1,4 @@
-from gym.envs.mujoco import HalfCheetahEnv
+from gymnasium.envs.mujoco import HalfCheetahEnv
 
 import rlkit.torch.pytorch_util as ptu
 from rlkit.data_management.env_replay_buffer import EnvReplayBuffer
