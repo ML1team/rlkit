@@ -52,7 +52,9 @@ class NormalizedBoxEnv(ProxyEnv):
         scaled_action = np.clip(scaled_action, lb, ub)
 
         wrapped_step = self._wrapped_env.step(scaled_action)
-        next_obs, reward, done, info = wrapped_step
+        # next_obs, reward, done, info = wrapped_step
+        next_obs, reward, terminated, truncated, info = wrapped_step
+        done = terminated or truncated
         if self._should_normalize:
             next_obs = self._apply_normalize_obs(next_obs)
         return next_obs, reward * self._reward_scale, done, info

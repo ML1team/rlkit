@@ -1,7 +1,7 @@
 import numpy as np
 from gymnasium import Env
 from gymnasium.spaces import Box
-import mujoco_py
+import mujoco
 
 from rlkit.core.serializable import Serializable
 
@@ -145,7 +145,7 @@ class CameraWrapper(object):
     def initialize_camera(self):
         # set camera parameters for viewing
         sim = self.sim
-        viewer = mujoco_py.MjRenderContextOffscreen(sim)
+        viewer = mujoco.MjRenderContextOffscreen(sim)
         camera = viewer.cam
         camera.type = 1
         camera.trackbodyid = 0

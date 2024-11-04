@@ -1,7 +1,7 @@
 import os
 from os import path
 
-import mujoco_py
+import mujoco
 import numpy as np
 from gymnasium.envs.mujoco import mujoco_env
 
@@ -38,7 +38,7 @@ class MujocoEnv(mujoco_env.MujocoEnv, Serializable):
             if not path.exists(fullpath):
                 raise IOError("File %s does not exist" % fullpath)
             self.frame_skip = frame_skip
-            self.model = mujoco_py.MjModel(fullpath)
+            self.model = mujoco.MjModel(fullpath)
             self.data = self.model.data
             self.viewer = None
 

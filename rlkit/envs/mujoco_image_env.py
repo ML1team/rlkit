@@ -21,7 +21,7 @@ class ImageMujocoEnv(ProxyEnv, Env):
                  grayscale=False,
                  normalize=False,
                  ):
-        import mujoco_py
+        import mujoco
         super().__init__(wrapped_env)
 
         self.imsize = imsize
@@ -37,7 +37,7 @@ class ImageMujocoEnv(ProxyEnv, Env):
         # init camera
         if init_camera is not None:
             sim = self._wrapped_env.sim
-            viewer = mujoco_py.MjRenderContextOffscreen(sim, device_id=-1)
+            viewer = mujoco.MjRenderContextOffscreen(sim, device_id=-1)
             init_camera(viewer.cam)
             sim.add_render_context(viewer)
         self.camera_name = camera_name  # None means default camera

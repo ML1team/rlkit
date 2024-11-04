@@ -1,6 +1,7 @@
 from collections import deque
 
-import mujoco_py
+# import mujoco
+import mujoco
 import numpy as np
 import torch
 from PIL import Image
@@ -36,7 +37,7 @@ class ImageMujocoEnv(ProxyEnv, Env):
         # init camera
         if init_camera is not None:
             sim = self._wrapped_env.sim
-            viewer = mujoco_py.MjRenderContextOffscreen(sim, device_id=-1)
+            viewer = mujoco.MjRenderContextOffscreen(sim, device_id=-1)
             init_camera(viewer.cam)
             sim.add_render_context(viewer)
         self.camera_name = camera_name  # None means default camera

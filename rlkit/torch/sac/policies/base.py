@@ -19,18 +19,41 @@ from rlkit.torch.networks.stochastic.distribution_generator import (
 )
 
 
+# ########## ORIGINAL CODE ##################
+# class TorchStochasticPolicy(
+#     DistributionGenerator,
+#     ExplorationPolicy, metaclass=abc.ABCMeta
+# ):
+#     def get_action(self, obs_np, ):
+#         actions = self.get_actions(obs_np[None])
+#         return actions[0, :], {}
+
+#     def get_actions(self, obs_np, ):
+#         dist = self._get_dist_from_np(obs_np)
+#         actions = dist.sample()
+#         return elem_or_tuple_to_numpy(actions)
+
+#     def _get_dist_from_np(self, *args, **kwargs):
+#         torch_args = tuple(torch_ify(x) for x in args)
+#         torch_kwargs = {k: torch_ify(v) for k, v in kwargs.items()}
+#         dist = self(*torch_args, **torch_kwargs)
+#         return dist
+
+
 class TorchStochasticPolicy(
     DistributionGenerator,
     ExplorationPolicy, metaclass=abc.ABCMeta
 ):
     def get_action(self, obs_np, ):
-        actions = self.get_actions(obs_np[None])
-        return actions[0, :], {}
+        if isinstance(obs_np, tuple) and len(obs_np) == 2 and isinstance(obs_np[1], dict):
+            obs_np, env_info = obs_np
+        actions, info = self.get_actions(obs_np[None])
+        return actions[0, :], info
 
     def get_actions(self, obs_np, ):
         dist = self._get_dist_from_np(obs_np)
         actions = dist.sample()
-        return elem_or_tuple_to_numpy(actions)
+        return elem_or_tuple_to_numpy(actions), {"mean": dist.mean.item(), "std": dist.stddev.item() if isinstance(dist, TanhNormal) else 0}
 
     def _get_dist_from_np(self, *args, **kwargs):
         torch_args = tuple(torch_ify(x) for x in args)
@@ -64,3 +87,4 @@ class MakeDeterministic(TorchStochasticPolicy):
     def forward(self, *args, **kwargs):
         dist = self._action_distribution_generator.forward(*args, **kwargs)
         return Delta(dist.mle_estimate())
+        # return Delta(dist.mle_estimate()), {"mean": dist.mean.item(), "std": dist.stddev.item()}
